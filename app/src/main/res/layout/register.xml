@@ -6,69 +6,51 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:id="@+id/LL1"
-        >
-
-        <TextView
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:text="@string/user"
-            android:gravity="center"/>
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:ems="10"
-            android:id="@+id/userEditText"
-            android:layout_weight="1" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        >
-
-        <TextView
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:text="@string/password"
-            android:gravity="center"/>
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:id="@+id/passwordEditText"
-            android:layout_weight="1" />
-    </LinearLayout>
+        android:orientation="vertical">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp">
+            android:orientation="horizontal"
+            android:layout_marginTop="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/LL1">
+
             <TextView
-                android:layout_width="150dp"
+                android:layout_width="200dp"
                 android:layout_height="50dp"
-                android:text="@string/email"
-                android:gravity="center"
-                />
+                android:text="@string/user"
+                android:id="@+id/userTextView"
+                android:gravity="center"/>
+
             <EditText
-                android:layout_width="235dp"
+                android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:inputType="textEmailAddress"
+                android:inputType="text"
                 android:ems="10"
-                android:id="@+id/emailAddressEditText" />
+                android:id="@+id/userEditText"
+                android:layout_weight="1" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            >
 
+            <TextView
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:text="@string/password"
+                android:gravity="center"/>
 
-
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/passwordEditText"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <Button
@@ -76,12 +58,12 @@
             android:layout_height="50dp"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="50dp"
-            android:text="@string/registrar"
+            android:text="@string/login"
             android:onClick="onRegistrar"/>
 
 
 
-    </LinearLayout>
 
+    </LinearLayout>
 
 </RelativeLayout>

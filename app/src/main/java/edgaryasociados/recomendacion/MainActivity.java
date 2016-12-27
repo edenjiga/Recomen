@@ -6,36 +6,26 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import org.apache.http.impl.client.DefaultHttpClient;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.net.URLEncoder;
+
+import java.util.HashMap;
 
 
 public class MainActivity extends AppCompatActivity {
 
 
     //String de url de la pagina
-    private static final String pagina="http://ceramicapiga.com/tesis/login.php";
+    private static final String LOGIN_URL="http://ceramicapiga.com/tesis/login.php";
 
-    private ProgressDialog pDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +34,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onLogin(View view) {
-        EditText userEditText = (EditText)findViewById(R.id.userEditText);
-        EditText passwordEditText = (EditText)findViewById(R.id.passwordEditText);
-        // we Check the text is not empty
 
-           new SaveTheFeed().execute();
+           new PostAsync().execute();
 
 
     }
@@ -67,10 +54,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    class SaveTheFeed extends AsyncTask<Void, Void, Void>{
+    class PostAsync extends AsyncTask<Void, Void, Void>{
 
-        String prueba = "chao";
-        String jsonString;
+        private ProgressDialog pDialog;
+        JSONObject json = new JSONObject();
+        JSONParser jsonParser = new JSONParser();
+        private static final String TAG_SUCCESS = "success";
+        private static final String TAG_MESSAGE = "message";
+
+
+        EditText userEditText = (EditText)findViewById(R.id.userEditText);
+        EditText passwordEditText = (EditText)findViewById(R.id.passwordEditText);
+        String user=userEditText.getText().toString();
+        String password= passwordEditText.getText().toString();
 
         @Override
         protected void onPreExecute() {
@@ -85,66 +81,48 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
 
-
-            EditText userEditText = (EditText)findViewById(R.id.userEditText);
-            EditText passwordEditText = (EditText)findViewById(R.id.passwordEditText);
-
-
             try {
-                URL url = null;
-                url = new URL(pagina);
-                HttpURLConnection urlConnection =null;
-                urlConnection = (HttpURLConnection)url.openConnection();
-                urlConnection.setRequestMethod("POST");
-                urlConnection.setRequestProperty("Accept-Encoding", "identity");
-                urlConnection.setDoInput(true);
-                urlConnection.setDoInput(true);
+                HashMap<String, String> params = new HashMap<>();
+                params.put("user", user);
+                params.put("password", password);
 
-                /*
-                JSONObject jSend = new JSONObject();
-                jSend.put("user", "12");
-                jSend.put("password", "12"); */
-                String jstr="user=12&password=12";
+                Log.d("request", "starting");
 
-                DataOutputStream wr = new DataOutputStream(urlConnection.getOutputStream());
-                wr.writeBytes(jstr.toString());
-                wr.flush();
-                wr.close();
+                json = jsonParser.makeHttpRequest(LOGIN_URL, "POST", params);
 
-                if(urlConnection.getResponseCode()==200){
-                    BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-                    StringBuilder sb = new StringBuilder();
-                    String line;
-                    while((line = br.readLine()) !=null){
-                        sb.append(line);
-                    }
-                    jsonString = sb.toString();
-
-                    prueba=sb.toString();
-
-                }
-
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (ProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+            }catch (Exception e){
                 e.printStackTrace();
             }
-
 
             return null;
         }
 
+
+
         @Override
         protected void onPostExecute(Void aVoid) {
-            EditText us =(EditText)findViewById(R.id.userEditText);
-            us.setText(prueba);
-            if(prueba.toString().equals("1")){
-                Toast.makeText(getApplication(),"Entro", Toast.LENGTH_LONG).show();
-            }else{
-                Toast.makeText(getApplication(),"No Entro", Toast.LENGTH_LONG).show();
+
+            if (pDialog != null && pDialog.isShowing()) {
+                pDialog.dismiss();
             }
+
+
+                try {
+                    String salt = json.getString("salt");
+                    String largepassword = json.getString("largepassword");
+                    String a = Textgenerator.get_SHA_512_SecurePassword(password, salt);
+
+                    if(a.equals(largepassword)) {
+                        Toast.makeText(getApplication(),"Funciono", Toast.LENGTH_LONG).show();
+
+                    }else{
+                        Toast.makeText(getApplication(),"No funciono", Toast.LENGTH_LONG).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
 
         }
     }
