@@ -115,7 +115,11 @@ public class MainActivity extends AppCompatActivity {
                     String a = Textgenerator.get_SHA_512_SecurePassword(password, salt);
 
                     if(a.equals(largepassword)) {
-                        Toast.makeText(getApplication(),"Funciono", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplication(),"Bienvenido", Toast.LENGTH_LONG).show();
+                        Intent intent =new Intent(getApplicationContext(), LobbyActivity.class);
+                        intent.putExtra("id","id");
+                        startActivity(intent);
+                        finish();
 
                     }else{
                         Toast.makeText(getApplication(),"No funciono", Toast.LENGTH_LONG).show();
