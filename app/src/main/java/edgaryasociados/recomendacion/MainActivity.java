@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onGotoRegisterActivity(View view) {
+
+        // we change to RegisterActivity
         Intent intent =new Intent(this, RegisterActivity.class);
         startActivity(intent);
 
