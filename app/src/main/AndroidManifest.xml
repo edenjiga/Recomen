@@ -18,7 +18,7 @@
         <activity android:name=".LobbyActivity"
             android:label="Lobby"
             android:theme="@style/AppTheme" />
-        
+
         <activity
             android:name=".RegisterActivity"
             android:label="Register form"
