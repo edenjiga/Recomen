@@ -3,7 +3,7 @@
     <string name="login">Login</string>
     <string name="user">User</string>
     <string name="password">Password</string>
-    <string name="registrate_text">Aun no tienes cuenta? Registrate!</string>
+    <string name="registrate_text">Password | Registrer</string>
     <string name="email">email</string>
     <string name="registrar">Registrar</string>
 </resources>
