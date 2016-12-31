@@ -7,21 +7,18 @@
     android:orientation="vertical"
     tools:context="edgaryasociados.recomendacion.MainActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/recom_fondo"
-        android:scaleType="centerCrop"/>
+    <include layout="@layout/lobby"></include>
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
     <LinearLayout
+        android:paddingTop="80dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:gravity="center">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,67 +27,38 @@
             android:gravity="center">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="RECOM"
-                android:textColor="#FFFFFF"
-                android:gravity="center"
-                android:textSize="50dp"
+                style="@style/appNameStyle"
                 android:fontFamily="sans-serif-medium"
-                android:paddingBottom="32dp"/>
-
+                android:text="RECOM"/>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="app"
-                android:textColor="#FFFFFF"
-                android:gravity="center"
-                android:textSize="50dp"
-                android:paddingBottom="32dp"/>
+                style="@style/appNameStyle"
+                android:text="app" />
 
         </LinearLayout>
 
 
         <EditText
+            style="@style/editText_Style"
             android:id="@+id/userEditText"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:background="@drawable/edit_text_style"
             android:drawableLeft="@mipmap/user2"
-            android:hint="Usarname"
-            android:inputType="text"
-            android:textColorHint="#FFFFFF"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"/>
+            android:hint="@string/user"
+            android:inputType="text"/>
 
         <EditText
+            style="@style/editText_Style"
             android:id="@+id/passwordEditText"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/edit_text_style"
+            android:layout_marginTop="16dp"
             android:drawableLeft="@mipmap/password"
-            android:hint="Pasword"
-            android:inputType="textPassword"
-            android:textColorHint="#FFFFFF"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"/>
-
+            android:hint="@string/password"
+            android:inputType="textPassword" />
 
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            style="@style/button_Style"
             android:layout_marginTop="50dp"
-            android:background="@drawable/buttonstyle"
             android:onClick="onLogin"
-            android:text="@string/login"
-            android:textColor="#FFFFFF" />
+            android:text="@string/login"/>
 
         <TextView
             android:id="@+id/link_to_register"
@@ -105,7 +73,6 @@
 
 
     </LinearLayout>
-
-
+    </ScrollView>
 
 </RelativeLayout>

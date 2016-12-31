@@ -1,9 +1,12 @@
 <resources>
-    <string name="app_name">Recomendacion</string>
+    <string name="app_name">Recom</string>
+    <string name="app_name2">app</string>
     <string name="login">Login</string>
-    <string name="user">User</string>
-    <string name="password">Password</string>
-    <string name="registrate_text">Password | Registrer</string>
-    <string name="email">email</string>
+    <string name="user">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="confirm_password">Confirmar Contraseña</string>
+    <string name="registrate_text">Contraseña | Registrar</string>
+    <string name="email">Correo</string>
+    <string name="Confirmar_email">Confirmar Correo</string>
     <string name="registrar">Registrar</string>
 </resources>

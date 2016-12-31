@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Recomen.iml" filepath="$PROJECT_DIR$/Recomen.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/recomen.iml" filepath="$PROJECT_DIR$/recomen.iml" />
     </modules>
   </component>
 </project>
