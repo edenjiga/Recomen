@@ -55,6 +55,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void menuPrincipal(View view) {
+
+        // we change to RegisterActivity
+        Intent intent =new Intent(this, Menu_Principal.class);
+        startActivity(intent);
+
+    }
+
 
     class PostAsync extends AsyncTask<Void, Void, Void>{
 
